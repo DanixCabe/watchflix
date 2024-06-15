@@ -1,0 +1,23 @@
+@import './includes/swiper';
+@import './includes/swiper-poster';
+@import './includes/text-style';
+@import './includes/movie-page';
+
+:root{
+    color-scheme: dark;
+}
+
+/* @font-face {
+    font-family: "Salmond";
+    src: url("public/fonts/salmond_-_light.woff");
+} */
+
+@font-face {
+    font-family: "avertademo";
+    src: url("public/fonts/AvertaDemo-Regular.otf");
+}
+
+p,h1,h2,h3,h4,h5,h6,li,a{
+    font-family: "avertademo";
+    color: #FFFFFF;
+}
