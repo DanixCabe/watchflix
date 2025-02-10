@@ -4,24 +4,41 @@ import { createSlice } from '@reduxjs/toolkit';
         name: 'series',
         initialState: {
             page: 1,
-            isLoadingSerie: false,
+            isLoadingSerie: true,
+            isLoadingGetMoreSeries: false,
             latestSearchWordSeries: '',
             listSeries: [],
-            serieSelected: {}
+            listSeriesPopular: [],
+            listSeriesInSearchedPage: [], // Used in SerieSearch.jsx
+            serieSelected: {},
+            serieSearched: {},
         },
         reducers: {
             getSeriesTrends: (state, {payload} ) => {
                 state.listSeries = payload.results;
-                state.isLoadingSerie = false;
             },
             getAllSeries: (state, {payload} ) => {
-                state.listSeries = payload.results;
-                state.isLoadingSerie = false;
+                state.listSeriesPopular = payload;
+            },
+            getAllAdditionalSeries: (state, {payload} ) => {
+                state.listSeriesPopular.push(...payload);
+                state.isLoadingGetMoreSeries = false;
             },
             searchSeries: (state, {payload} ) => {
                 state.listSeries = payload.data;
                 state.latestSearchWordSeries = payload.search;
-                state.isLoadingSerie = false;
+            },
+            getSearchSerieId: (state, {payload} ) => {
+                state.serieSearched = payload;
+            },
+            getVideoTrailerSerie: (state, {payload} ) => {
+                state.serieSearched.trailer = payload;
+            },
+            getSerieCast: (state, {payload} ) => {
+                state.serieSearched.cast = payload;
+            },
+            getSeriesPerGenreInSearchedPage: (state, {payload} ) => {
+                state.listSeriesInSearchedPage = payload;
             },
             checkLoading: (state) => {
                 state.isLoadingSerie = true;
@@ -29,7 +46,10 @@ import { createSlice } from '@reduxjs/toolkit';
             setLoadingFalse: (state) => {
                 state.isLoadingSerie = false;
             },
+            checkLoadingGetMoreSeries: (state) => {
+                state.isLoadingGetMoreSeries = true;
+            },
         }
 });
 // Action creators are generated for each case reducer function
-export const { getSeriesTrends, getAllSeries, searchSeries, checkLoading, setLoadingFalse } = seriesSlice.actions;
+export const { getSeriesTrends, getAllSeries, getAllAdditionalSeries, searchSeries, getSearchSerieId, getVideoTrailerSerie, getSerieCast, getSeriesPerGenreInSearchedPage, checkLoading, setLoadingFalse, checkLoadingGetMoreSeries } = seriesSlice.actions;

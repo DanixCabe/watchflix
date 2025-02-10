@@ -2,3 +2,26 @@
     background-image: linear-gradient(180deg, #000, rgba(0, 0, 0, .5) 0, transparent);
 
 }
+
+.linearBanner-page{
+    &::before{
+        background-image: linear-gradient(0deg, #000, rgba(0, 0, 0, .75) 45%, transparent 70%)
+    }
+    &::after{
+        background-image: linear-gradient(90deg,rgba(0,0,0,.9),transparent 70%)
+    }
+
+    &__btn-trailer{
+        transition: all ease-in-out 0.3s;
+        &::before{
+            content: url(/public/images/ico/ico-play-white.svg);
+            width: 8px;
+            margin-right: 6px;
+        }
+        &:hover{
+            &::before{
+                content: url(/public/images/ico/ico-play-black.svg);
+            }
+        }
+    }
+}

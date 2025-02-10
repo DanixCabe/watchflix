@@ -5,12 +5,16 @@ import { createSlice } from '@reduxjs/toolkit';
         initialState: {
             page: 1,
             isLoadingMovie: true,
+            isLoadingGetMoreMovies: false,
             isLoadingMovieSearched: false,
             latestSearchWordMovies: '',
             listMoviesHome: [],
             listMovies: [],
+            listMoviesPopular: [],
+            listMoviesInSearchedPage: [],
             movieSearched: {},
             listGenreMovies: [],
+            listMoviesPerGenre: [],
         },
         reducers: {
             getMoviesNow: (state, {payload} ) => {
@@ -20,20 +24,43 @@ import { createSlice } from '@reduxjs/toolkit';
                 state.listMovies = payload.results;
             },
             getAllMovies: (state, {payload} ) => {
-                state.listMovies = payload.results;
+                state.listMoviesPopular = payload;
             },
-            searchMovie: (state, {payload} ) => {
+            getAllAdditionalMovies: (state, {payload} ) => {
+                state.listMoviesPopular.push(...payload);
+                state.isLoadingGetMoreMovies = false;
+            },
+            getSearchMovie: (state, {payload} ) => {
                 state.listMovies = payload.data;
                 state.latestSearchWordMovies = payload.search;
             },
-            searchMovieId: (state, {payload} ) => {
+            getSearchMovieId: (state, {payload} ) => {
                 state.movieSearched = payload;
             },
             getGenreMovieList: (state, {payload} ) => {
                 state.listGenreMovies = payload;
             },
+            getMovieTrailerMovie: (state, {payload} ) => {
+                state.movieSearched.trailer = payload;
+            },
+            getMovieCast: (state, {payload} ) => {
+                state.movieSearched.cast = payload;
+            },
+            getMoviePerGenre: (state, {payload} ) => {
+                state.listMoviesPerGenre = payload;
+            },
+            setAdditionalMoviePerGenre: (state, {payload} ) => {
+                state.listMoviesPerGenre.push(...payload);
+                state.isLoadingGetMoreMovies = false;
+            },
+            getMoviesPerGenreInSearchedPage: (state, {payload} ) => {
+                state.listMoviesInSearchedPage = payload;
+            },
             checkLoading: (state) => {
                 state.isLoadingMovie = true;
+            },
+            checkLoadingGetMoreMovies: (state) => {
+                state.isLoadingGetMoreMovies = true;
             },
             setLoadingFalse: (state) => {
                 state.isLoadingMovie = false;
@@ -41,4 +68,4 @@ import { createSlice } from '@reduxjs/toolkit';
         }
 });
 // Action creators are generated for each case reducer function
-export const { getMoviesNow, getMoviesTrends, getAllMovies , searchMovie, searchMovieId, getGenreMovieList, checkLoading,setLoadingFalse } = moviesSlice.actions;
+export const { getMoviesNow, getMoviesTrends, getAllMovies, getAllAdditionalMovies , getSearchMovie, getSearchMovieId, getGenreMovieList, getMovieTrailerMovie, getMovieCast, getMoviePerGenre, setAdditionalMoviePerGenre, getMoviesPerGenreInSearchedPage, checkLoading, checkLoadingGetMoreMovies, setLoadingFalse } = moviesSlice.actions;

@@ -1,6 +1,6 @@
 
 import { Navigate } from "react-router-dom";
-import { SeriesPage, MoviesPage, HomePage, MovieSearch, MoviesGenrePage } from "../pages";
+import { SeriesPage, MoviesPage, HomePage, MovieSearch, MoviesGenrePage, SerieSearch } from "../pages";
 
 
 export const ChildWatchflixRoutes = [
@@ -23,6 +23,10 @@ export const ChildWatchflixRoutes = [
     {
         path: 'series',
         element: <SeriesPage/>,
+    },
+    {
+        path: 'series/media/:id',
+        element: <SerieSearch/>
     },
     {
         path: '/*',

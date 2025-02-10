@@ -16,7 +16,6 @@ export const useGenres = () => {
         });
         setGenresNameBackground(listGenresPerMovie)
     }
-    
 
 
     return {

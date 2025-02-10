@@ -2,6 +2,8 @@
 @import './includes/swiper-poster';
 @import './includes/text-style';
 @import './includes/movie-page';
+@import './includes/list-movie-serie';
+@import './includes/swiper-cast';
 
 :root{
     color-scheme: dark;
@@ -21,3 +23,21 @@ p,h1,h2,h3,h4,h5,h6,li,a{
     font-family: "avertademo";
     color: #FFFFFF;
 }
+
+.animate__animated.animate__fadeIn{
+    animation-duration: 2s;
+}
+
+/*SCROLLBAR*/
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 100PX;
+    scrollbar-gutter: stable;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 100PX;
+  }
